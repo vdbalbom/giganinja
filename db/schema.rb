@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_18_201938) do
+ActiveRecord::Schema.define(version: 2018_04_18_202202) do
+
+  create_table "emails", force: :cascade do |t|
+    t.string "endereco_email"
+    t.string "referencia"
+    t.integer "fornecedor_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "fornecedors", force: :cascade do |t|
     t.string "nome"

@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Endereco email:</strong>
+  <%= @email.endereco_email %>
+</p>
+
+<p>
+  <strong>Referencia:</strong>
+  <%= @email.referencia %>
+</p>
+
+<p>
+  <strong>Fornecedor:</strong>
+  <%= @email.fornecedor_id %>
+</p>
+
+<%= link_to 'Edit', edit_email_path(@email) %> |
+<%= link_to 'Back', emails_path %>
