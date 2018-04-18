@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Data:</strong>
+  <%= @pedido.data %>
+</p>
+
+<p>
+  <strong>Hora:</strong>
+  <%= @pedido.hora %>
+</p>
+
+<p>
+  <strong>Nota fiscal:</strong>
+  <%= @pedido.nota_fiscal %>
+</p>
+
+<p>
+  <strong>Valor frete:</strong>
+  <%= @pedido.valor_frete %>
+</p>
+
+<p>
+  <strong>Desconto:</strong>
+  <%= @pedido.desconto %>
+</p>
+
+<p>
+  <strong>Valor total:</strong>
+  <%= @pedido.valor_total %>
+</p>
+
+<p>
+  <strong>Transportadora:</strong>
+  <%= @pedido.transportadora_id %>
+</p>
+
+<%= link_to 'Edit', edit_pedido_path(@pedido) %> |
+<%= link_to 'Back', pedidos_path %>

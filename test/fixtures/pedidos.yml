@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  data: 2018-04-18
+  hora: 2018-04-18 16:53:52
+  nota_fiscal: MyString
+  valor_frete: 1.5
+  desconto: 1.5
+  valor_total: 1.5
+  transportadora_id: 1
+
+two:
+  data: 2018-04-18
+  hora: 2018-04-18 16:53:52
+  nota_fiscal: MyString
+  valor_frete: 1.5
+  desconto: 1.5
+  valor_total: 1.5
+  transportadora_id: 1
