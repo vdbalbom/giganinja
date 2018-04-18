@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_18_201406) do
+ActiveRecord::Schema.define(version: 2018_04_18_201938) do
 
   create_table "fornecedors", force: :cascade do |t|
     t.string "nome"
@@ -31,6 +31,15 @@ ActiveRecord::Schema.define(version: 2018_04_18_201406) do
     t.float "desconto"
     t.float "valor_total"
     t.integer "transportadora_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "telefones", force: :cascade do |t|
+    t.string "ddd"
+    t.string "numero"
+    t.string "referencia"
+    t.integer "fornecedor_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :telefones
   resources :fornecedors
   resources :pedidos
   resources :transportadoras
