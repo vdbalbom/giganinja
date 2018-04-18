@@ -1,0 +1,22 @@
+<%= form_with(model: transportadora, local: true) do |form| %>
+  <% if transportadora.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(transportadora.errors.count, "error") %> prohibited this transportadora from being saved:</h2>
+
+      <ul>
+      <% transportadora.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :nome %>
+    <%= form.text_field :nome %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
