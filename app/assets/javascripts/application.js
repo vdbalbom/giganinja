@@ -14,3 +14,13 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+// another way to solve (try later)
+//https://rbudiharso.wordpress.com/2010/07/07/dynamically-add-and-remove-input-field-in-rails-without-javascript/
+function addTelefoneField() {
+  let div = document.createElement("div")
+  div.innerHTML = "<input type=\"text\" placeholder=\"DDD\" name=\"ddds[]\">\n" +
+                  "<input type=\"text\" placeholder=\"Telefone\" name=\"telefones[]\">\n" +
+                  "<input type=\"text\" placeholder=\"Referência\" name=\"t_referencias[]\">"
+  document.getElementById("telefones_field").appendChild(div);
+}

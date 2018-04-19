@@ -25,13 +25,28 @@ class FornecedorsController < ApplicationController
   # POST /fornecedors.json
   def create
     @fornecedor = Fornecedor.new(fornecedor_params)
-
     respond_to do |format|
       if @fornecedor.save
+
+        telefone_ok = true
+        params[:ddds].delete("")
+        params[:telefones].delete("")
+        params[:t_referencias].delete("")
+        params[:telefones].length.times do |i|
+          ddd =
+          tel =
+          ref = params[:t_referencias][i]
+          telefone = Telefone.new(ddd: params[:ddds][i],
+                                  numero: params[:telefones][i],
+                                  referencia: ref,
+                                  fornecedor_id: @fornecedor.id)
+          telefone_ok = false unless telefone.save
+        end
+
         format.html { redirect_to @fornecedor, notice: 'Fornecedor was successfully created.' }
         format.json { render :show, status: :created, location: @fornecedor }
       else
-        format.html { render :new }
+        format.html { render :new, error: 'Erro.' }
         format.json { render json: @fornecedor.errors, status: :unprocessable_entity }
       end
     end
@@ -42,6 +57,23 @@ class FornecedorsController < ApplicationController
   def update
     respond_to do |format|
       if @fornecedor.update(fornecedor_params)
+
+        @fornecedor.telefones.each {|tel| tel.destroy}
+        telefone_ok = true
+        params[:ddds].delete("")
+        params[:telefones].delete("")
+        params[:t_referencias].delete("")
+        params[:telefones].length.times do |i|
+          ddd =
+          tel =
+          ref = params[:t_referencias][i]
+          telefone = Telefone.new(ddd: params[:ddds][i],
+                                  numero: params[:telefones][i],
+                                  referencia: ref,
+                                  fornecedor_id: @fornecedor.id)
+          telefone_ok = false unless telefone.save
+        end
+
         format.html { redirect_to @fornecedor, notice: 'Fornecedor was successfully updated.' }
         format.json { render :show, status: :ok, location: @fornecedor }
       else

@@ -41,6 +41,25 @@
     <%= form.number_field :numero %>
   </div>
 
+  <div class="field">
+    <%= form.label :telefones %>
+    <div id="telefones_field">
+      <% @fornecedor.telefones.each do |tel| %>
+        <div>
+          <input type="text" placeholder="DDD" name="ddds[]" value="<%=tel.ddd%>">
+          <input type="text" placeholder="Telefone" name="telefones[]" value="<%=tel.numero%>">
+          <input type="text" placeholder="Referência" name="t_referencias[]" value="<%=tel.referencia%>">
+        </div>
+      <% end %>
+      <div>
+        <input type="text" placeholder="DDD" name="ddds[]">
+        <input type="text" placeholder="Telefone" name="telefones[]">
+        <input type="text" placeholder="Referência" name="t_referencias[]">
+      </div>
+    </div>
+    <button type="button" onclick="addTelefoneField()"> + </button>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
