@@ -24,3 +24,10 @@ function addTelefoneField() {
                   "<input type=\"text\" placeholder=\"Referência\" name=\"t_referencias[]\">"
   document.getElementById("telefones_field").appendChild(div);
 }
+
+function addEmailField() {
+  let div = document.createElement("div")
+  div.innerHTML = "<input type=\"text\" placeholder=\"Email\" name=\"emails[]\">\n" +
+                  "<input type=\"text\" placeholder=\"Referência\" name=\"e_referencias[]\">"
+  document.getElementById("emails_field").appendChild(div);
+}

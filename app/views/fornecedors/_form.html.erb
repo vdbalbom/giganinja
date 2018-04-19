@@ -60,6 +60,23 @@
     <button type="button" onclick="addTelefoneField()"> + </button>
   </div>
 
+  <div class="field">
+    <%= form.label :emails %>
+    <div id="emails_field">
+      <% @fornecedor.emails.each do |mail| %>
+        <div>
+          <input type="text" placeholder="Email" name="emails[]" value="<%=mail.endereco_email%>">
+          <input type="text" placeholder="Referência" name="e_referencias[]" value="<%=mail.referencia%>">
+        </div>
+      <% end %>
+      <div>
+        <input type="text" placeholder="Email" name="emails[]">
+        <input type="text" placeholder="Referência" name="e_referencias[]">
+      </div>
+    </div>
+    <button type="button" onclick="addEmailField()"> + </button>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>

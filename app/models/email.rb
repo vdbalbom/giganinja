@@ -1,3 +1,3 @@
 class Email < ApplicationRecord
-  belongs_to :frnecedor
+  belongs_to :fornecedor
 end

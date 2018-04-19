@@ -40,6 +40,16 @@ class FornecedorsController < ApplicationController
           telefone_ok = false unless telefone.save
         end
 
+        email_ok = true
+        params[:emails].delete("")
+        params[:e_referencias].delete("")
+        params[:emails].length.times do |i|
+          email = Email.new(endereco_email: params[:emails][i],
+                                  referencia: params[:e_referencias][i],
+                                  fornecedor_id: @fornecedor.id)
+          email_ok = false unless email.save
+        end
+
         format.html { redirect_to @fornecedor, notice: 'Fornecedor was successfully created.' }
         format.json { render :show, status: :created, location: @fornecedor }
       else
@@ -66,6 +76,17 @@ class FornecedorsController < ApplicationController
                                   referencia: params[:t_referencias][i],
                                   fornecedor_id: @fornecedor.id)
           telefone_ok = false unless telefone.save
+        end
+
+        @fornecedor.emails.each {|mail| mail.destroy}
+        email_ok = true
+        params[:emails].delete("")
+        params[:e_referencias].delete("")
+        params[:emails].length.times do |i|
+          email = Email.new(endereco_email: params[:emails][i],
+                                  referencia: params[:e_referencias][i],
+                                  fornecedor_id: @fornecedor.id)
+          email_ok = false unless email.save
         end
 
         format.html { redirect_to @fornecedor, notice: 'Fornecedor was successfully updated.' }
