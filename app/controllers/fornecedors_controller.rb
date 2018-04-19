@@ -33,12 +33,9 @@ class FornecedorsController < ApplicationController
         params[:telefones].delete("")
         params[:t_referencias].delete("")
         params[:telefones].length.times do |i|
-          ddd =
-          tel =
-          ref = params[:t_referencias][i]
           telefone = Telefone.new(ddd: params[:ddds][i],
                                   numero: params[:telefones][i],
-                                  referencia: ref,
+                                  referencia: params[:t_referencias][i],
                                   fornecedor_id: @fornecedor.id)
           telefone_ok = false unless telefone.save
         end
@@ -64,12 +61,9 @@ class FornecedorsController < ApplicationController
         params[:telefones].delete("")
         params[:t_referencias].delete("")
         params[:telefones].length.times do |i|
-          ddd =
-          tel =
-          ref = params[:t_referencias][i]
           telefone = Telefone.new(ddd: params[:ddds][i],
                                   numero: params[:telefones][i],
-                                  referencia: ref,
+                                  referencia: params[:t_referencias][i],
                                   fornecedor_id: @fornecedor.id)
           telefone_ok = false unless telefone.save
         end
