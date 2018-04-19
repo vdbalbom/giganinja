@@ -78,7 +78,6 @@ class FornecedorsController < ApplicationController
     end
 
     def add_telefones
-      telefone_ok = true
       params[:ddds].delete("")
       params[:telefones].delete("")
       params[:t_referencias].delete("")
@@ -87,21 +86,20 @@ class FornecedorsController < ApplicationController
                                 numero: params[:telefones][i],
                                 referencia: params[:t_referencias][i],
                                 fornecedor_id: @fornecedor.id)
-        telefone_ok = false unless telefone.save
+        return false unless telefone.save
       end
-      telefone_ok
+      return true
     end
 
     def add_emails
-      email_ok = true
       params[:emails].delete("")
       params[:e_referencias].delete("")
       params[:emails].length.times do |i|
         email = Email.new(endereco_email: params[:emails][i],
                                 referencia: params[:e_referencias][i],
                                 fornecedor_id: @fornecedor.id)
-        email_ok = false unless email.save
+        return false unless email.save
       end
-      email_ok
+      return true
     end
 end
