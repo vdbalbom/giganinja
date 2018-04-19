@@ -1,0 +1,20 @@
+version: '2'
+services:
+  base:
+    build:
+      context: .
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/app
+  dev:
+    extends: base
+    command: bash -c "rails s -e development"
+
+  prod:
+   extends: base
+   command: bash -c "rails s -e production"
+
+  test:
+    extends: base
+    command: bash -c "rails test -e test"
