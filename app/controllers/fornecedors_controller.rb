@@ -26,7 +26,10 @@ class FornecedorsController < ApplicationController
   def create
     @fornecedor = Fornecedor.new(fornecedor_params)
     respond_to do |format|
+      # TODO: verify telefones and emails, to solve the PROBLEM 1
       if @fornecedor.save
+        # PROBLEM 1: this is not de best solution because add_telefones and add_emails could return false
+        #            and in this case the forncedor should not be created
         add_telefones
         add_emails
         format.html { redirect_to @fornecedor, notice: 'Fornecedor was successfully created.' }
@@ -42,7 +45,10 @@ class FornecedorsController < ApplicationController
   # PATCH/PUT /fornecedors/1.json
   def update
     respond_to do |format|
+      # TODO: verify telefones and emails, to solve the PROBLEM 2
       if @fornecedor.update(fornecedor_params)
+        # PROBLEM 2: this is not de best solution because add_telefones and add_emails could return false
+        #            and in this case the forncedor should not be updated
         @fornecedor.telefones.each {|tel| tel.destroy}
         @fornecedor.emails.each {|mail| mail.destroy}
         add_telefones
