@@ -31,3 +31,11 @@ function addEmailField() {
                   "<input type=\"text\" placeholder=\"Referência\" name=\"e_referencias[]\">"
   document.getElementById("emails_field").appendChild(div);
 }
+
+function addItemField() {
+  let div = document.createElement("div")
+  div.innerHTML = "<input type=\"text\" placeholder=\"ID do Produto\" name=\"produto_ids[]\">\n" +
+                  "<input type=\"text\" placeholder=\"Preço do Produto\" name=\"valors[]\">\n" +
+                  "<input type=\"text\" placeholder=\"Quantidade\" name=\"quantidades[]\">"
+  document.getElementById("items_field").appendChild(div);
+}

@@ -28,6 +28,7 @@ class PedidosController < ApplicationController
 
     respond_to do |format|
       if @pedido.save
+        add_items
         format.html { redirect_to @pedido, notice: 'Pedido was successfully created.' }
         format.json { render :show, status: :created, location: @pedido }
       else
@@ -42,6 +43,8 @@ class PedidosController < ApplicationController
   def update
     respond_to do |format|
       if @pedido.update(pedido_params)
+        @pedido.items.each {|item| item.destroy}
+        add_items
         format.html { redirect_to @pedido, notice: 'Pedido was successfully updated.' }
         format.json { render :show, status: :ok, location: @pedido }
       else
@@ -70,5 +73,18 @@ class PedidosController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def pedido_params
       params.require(:pedido).permit(:data, :hora, :nota_fiscal, :valor_frete, :desconto, :transportadora_id)
+    end
+
+    def add_items
+      params[:produto_ids].delete("")
+      params[:valors].delete("")
+      params[:quantidades].length.times do |i|
+        email = Item.new(produto_id: params[:produto_ids][i],
+                         valor: params[:valors][i],
+                         quantidade: params[:quantidades][i],
+                         pedido_id: @pedido.id)
+        return false unless email.save
+      end
+      return true
     end
 end
