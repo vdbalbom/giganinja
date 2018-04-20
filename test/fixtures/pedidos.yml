@@ -6,7 +6,6 @@ one:
   nota_fiscal: MyString
   valor_frete: 1.5
   desconto: 1.5
-  valor_total: 1.5
   transportadora_id: 1
 
 two:
@@ -15,5 +14,4 @@ two:
   nota_fiscal: MyString
   valor_frete: 1.5
   desconto: 1.5
-  valor_total: 1.5
   transportadora_id: 1

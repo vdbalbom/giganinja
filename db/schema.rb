@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_18_202722) do
+ActiveRecord::Schema.define(version: 2018_04_20_175216) do
 
   create_table "emails", force: :cascade do |t|
     t.string "endereco_email"
@@ -46,7 +46,6 @@ ActiveRecord::Schema.define(version: 2018_04_18_202722) do
     t.string "nota_fiscal"
     t.float "valor_frete"
     t.float "desconto"
-    t.float "valor_total"
     t.integer "transportadora_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

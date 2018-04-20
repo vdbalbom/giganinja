@@ -20,7 +20,6 @@ class PedidosTest < ApplicationSystemTestCase
     fill_in "Nota Fiscal", with: @pedido.nota_fiscal
     fill_in "Transportadora", with: @pedido.transportadora_id
     fill_in "Valor Frete", with: @pedido.valor_frete
-    fill_in "Valor Total", with: @pedido.valor_total
     click_on "Create Pedido"
 
     assert_text "Pedido was successfully created"
@@ -37,7 +36,6 @@ class PedidosTest < ApplicationSystemTestCase
     fill_in "Nota Fiscal", with: @pedido.nota_fiscal
     fill_in "Transportadora", with: @pedido.transportadora_id
     fill_in "Valor Frete", with: @pedido.valor_frete
-    fill_in "Valor Total", with: @pedido.valor_total
     click_on "Update Pedido"
 
     assert_text "Pedido was successfully updated"
