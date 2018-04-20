@@ -27,7 +27,10 @@ class PedidosController < ApplicationController
     @pedido = Pedido.new(pedido_params)
 
     respond_to do |format|
+      # TODO: verify items, to solve the PROBLEM 3
       if @pedido.save
+        # PROBLEM 3: this is not de best solution because add_items could return false
+        #            and in this case the pedido should not be created
         add_items
         format.html { redirect_to @pedido, notice: 'Pedido was successfully created.' }
         format.json { render :show, status: :created, location: @pedido }
