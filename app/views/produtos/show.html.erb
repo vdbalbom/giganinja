@@ -12,7 +12,7 @@
 
 <p>
   <strong>Fornecedor:</strong>
-  <%= @produto.fornecedor_id %>
+  <%= @produto.fornecedor.nome %>
 </p>
 
 <%= link_to 'Edit', edit_produto_path(@produto) %> |

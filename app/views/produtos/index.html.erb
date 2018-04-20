@@ -17,7 +17,7 @@
       <tr>
         <td><%= produto.nome %></td>
         <td><%= produto.descricao %></td>
-        <td><%= produto.fornecedor_id %></td>
+        <td><%= produto.fornecedor.nome %></td>
         <td><%= link_to 'Show', produto %></td>
         <td><%= link_to 'Edit', edit_produto_path(produto) %></td>
         <td><%= link_to 'Destroy', produto, method: :delete, data: { confirm: 'Are you sure?' } %></td>

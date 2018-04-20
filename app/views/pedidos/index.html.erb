@@ -25,7 +25,7 @@
         <td><%= pedido.valor_frete %></td>
         <td><%= pedido.desconto %></td>
         <td><%= pedido.valor_total %></td>
-        <td><%= pedido.transportadora_id %></td>
+        <td><%= pedido.transportadora.nome %></td>
         <td><%= link_to 'Show', pedido %></td>
         <td><%= link_to 'Edit', edit_pedido_path(pedido) %></td>
         <td><%= link_to 'Destroy', pedido, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -22,8 +22,8 @@
   </div>
 
   <div class="field">
-    <%= form.label :fornecedor_id %>
-    <%= form.number_field :fornecedor_id %>
+    <%= form.label :fornecedor %>
+    <%= form.collection_select :fornecedor_id, Fornecedor.all, :id, :nome, :selected => @produto.fornecedor_id  %>
   </div>
 
   <div class="actions">
