@@ -49,12 +49,14 @@
           <input type="text" placeholder="DDD" name="ddds[]" value="<%=tel.ddd%>">
           <input type="text" placeholder="Telefone" name="telefones[]" value="<%=tel.numero%>">
           <input type="text" placeholder="Referência" name="t_referencias[]" value="<%=tel.referencia%>">
+          <button type="button" onclick="rmField(this)"> - </button>
         </div>
       <% end %>
       <div>
         <input type="text" placeholder="DDD" name="ddds[]">
         <input type="text" placeholder="Telefone" name="telefones[]">
         <input type="text" placeholder="Referência" name="t_referencias[]">
+        <button type="button" onclick="rmField(this)"> - </button>
       </div>
     </div>
     <button type="button" onclick="addTelefoneField()"> + </button>

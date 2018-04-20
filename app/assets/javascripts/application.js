@@ -21,14 +21,16 @@ function addTelefoneField() {
   let div = document.createElement("div")
   div.innerHTML = "<input type=\"text\" placeholder=\"DDD\" name=\"ddds[]\">\n" +
                   "<input type=\"text\" placeholder=\"Telefone\" name=\"telefones[]\">\n" +
-                  "<input type=\"text\" placeholder=\"Referência\" name=\"t_referencias[]\">"
+                  "<input type=\"text\" placeholder=\"Referência\" name=\"t_referencias[]\">\n" +
+                  "<button type=\"button\" onclick=\"rmField(this)\"> - </button>"
   document.getElementById("telefones_field").appendChild(div);
 }
 
 function addEmailField() {
   let div = document.createElement("div")
   div.innerHTML = "<input type=\"text\" placeholder=\"Email\" name=\"emails[]\">\n" +
-                  "<input type=\"text\" placeholder=\"Referência\" name=\"e_referencias[]\">"
+                  "<input type=\"text\" placeholder=\"Referência\" name=\"e_referencias[]\">\n" +
+                  "<button type=\"button\" onclick=\"rmField(this)\"> - </button>"
   document.getElementById("emails_field").appendChild(div);
 }
 
@@ -36,6 +38,11 @@ function addItemField() {
   let div = document.createElement("div")
   div.innerHTML = "<input type=\"text\" placeholder=\"ID do Produto\" name=\"produto_ids[]\">\n" +
                   "<input type=\"text\" placeholder=\"Preço do Produto\" name=\"valors[]\">\n" +
-                  "<input type=\"text\" placeholder=\"Quantidade\" name=\"quantidades[]\">"
+                  "<input type=\"text\" placeholder=\"Quantidade\" name=\"quantidades[]\">\n" +
+                  "<button type=\"button\" onclick=\"rmField(this)\"> - </button>"
   document.getElementById("items_field").appendChild(div);
+}
+
+function rmField(f) {
+  f.parentNode.remove()
 }

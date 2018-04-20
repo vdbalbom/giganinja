@@ -49,12 +49,14 @@
           <input type="text" placeholder="ID do Produto" name="produto_ids[]" value="<%=item.produto_id%>">
           <input type="text" placeholder="Preço do Produto" name="valors[]" value="<%=item.valor%>">
           <input type="text" placeholder="Quantidade" name="quantidades[]" value="<%=item.quantidade%>">
+          <button type="button" onclick="rmField(this)"> - </button>
         </div>
       <% end %>
       <div>
         <input type="text" placeholder="ID do Produto" name="produto_ids[]">
         <input type="text" placeholder="Preço do Produto" name="valors[]">
         <input type="text" placeholder="Quantidade" name="quantidades[]">
+        <button type="button" onclick="rmField(this)"> - </button>
       </div>
     </div>
     <button type="button" onclick="addItemField()"> + </button>
