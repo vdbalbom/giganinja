@@ -2,7 +2,10 @@ require 'test_helper'
 
 class ProdutosControllerTest < ActionDispatch::IntegrationTest
   setup do
+    f = Fornecedor.new(nome: "My String")
+    f.save
     @produto = produtos(:one)
+    @produto.fornecedor_id = f.id
   end
 
   test "should get index" do

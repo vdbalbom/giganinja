@@ -2,7 +2,10 @@ require 'test_helper'
 
 class PedidosControllerTest < ActionDispatch::IntegrationTest
   setup do
+    t = Transportadora.new(nome: "My String")
+    t.save
     @pedido = pedidos(:one)
+    @pedido.transportadora_id = t.id
   end
 
   test "should get index" do

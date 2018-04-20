@@ -2,7 +2,10 @@ require 'test_helper'
 
 class EmailsControllerTest < ActionDispatch::IntegrationTest
   setup do
+    f = Fornecedor.new(nome: "My String")
+    f.save
     @email = emails(:one)
+    @email.fornecedor_id = f.id
   end
 
   test "should get index" do
