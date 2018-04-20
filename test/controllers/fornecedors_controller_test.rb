@@ -17,7 +17,8 @@ class FornecedorsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create fornecedor" do
     assert_difference('Fornecedor.count') do
-      post fornecedors_url, params: { fornecedor: { bairro: @fornecedor.bairro, cidade: @fornecedor.cidade, descricao: @fornecedor.descricao, endereco: @fornecedor.endereco, nome: @fornecedor.nome, numero: @fornecedor.numero } }
+      post fornecedors_url, params: { fornecedor: { bairro: @fornecedor.bairro, cidade: @fornecedor.cidade, descricao: @fornecedor.descricao, endereco: @fornecedor.endereco, nome: @fornecedor.nome, numero: @fornecedor.numero },
+                                      ddds: [], telefones: [], t_referencias: [], emails: [], e_referencias: [] }
     end
 
     assert_redirected_to fornecedor_url(Fornecedor.last)
@@ -34,7 +35,8 @@ class FornecedorsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update fornecedor" do
-    patch fornecedor_url(@fornecedor), params: { fornecedor: { bairro: @fornecedor.bairro, cidade: @fornecedor.cidade, descricao: @fornecedor.descricao, endereco: @fornecedor.endereco, nome: @fornecedor.nome, numero: @fornecedor.numero } }
+    patch fornecedor_url(@fornecedor), params: { fornecedor: { bairro: @fornecedor.bairro, cidade: @fornecedor.cidade, descricao: @fornecedor.descricao, endereco: @fornecedor.endereco, nome: @fornecedor.nome, numero: @fornecedor.numero },
+                                                 ddds: [], telefones: [], t_referencias: [], emails: [], e_referencias: [] }
     assert_redirected_to fornecedor_url(@fornecedor)
   end
 
