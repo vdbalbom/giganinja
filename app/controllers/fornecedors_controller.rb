@@ -102,9 +102,8 @@ class FornecedorsController < ApplicationController
                                 numero: params[:telefones][i],
                                 referencia: params[:t_referencias][i],
                                 fornecedor_id: @fornecedor.id)
-        return false unless telefone.save
+        telefone.save
       end
-      return true
     end
 
     def add_emails
@@ -114,8 +113,7 @@ class FornecedorsController < ApplicationController
         email = Email.new(endereco_email: params[:emails][i],
                                 referencia: params[:e_referencias][i],
                                 fornecedor_id: @fornecedor.id)
-        return false unless email.save
+        email.save
       end
-      return true
     end
 end

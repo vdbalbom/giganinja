@@ -91,6 +91,7 @@ class PedidosController < ApplicationController
                          valor: params[:valors][i],
                          quantidade: params[:quantidades][i],
                          pedido_id: @pedido.id)
+        email.save
       end
     end
 end
