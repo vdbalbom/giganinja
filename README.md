@@ -29,6 +29,7 @@ $ make run-dev
 - Melhorar mensagens de erro
 - Mais testes
 - CSS
+- Preparar ambiente de PROD
 
 ---
 
