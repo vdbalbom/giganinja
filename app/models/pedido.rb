@@ -7,8 +7,11 @@ class Pedido < ApplicationRecord
   validates :valor_frete, presence: true
   validates :desconto, presence: true
 
-  # TODO: write this method
   def valor_total
-    return 0
+    total = 0.0
+    self.items.each {|item| total += item.subtotal}
+    total += self.valor_frete
+    total -= self.desconto
+    return total
   end
 end
