@@ -1,24 +1,47 @@
-# README
+# Giganinja
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Dependências:
 
-Things you may want to cover:
+- docker
+- docker-compose
+- make
 
-* Ruby version
+## Build
 
-* System dependencies
+```
+$ make run build
+```
 
-* Configuration
+## Testar
 
-* Database creation
+```
+$ make run-test
+```
 
-* Database initialization
+## Rodar no ambiente de DEV
+```
+$ make run-dev
+```
 
-* How to run the test suite
+---
 
-* Services (job queues, cache servers, search engines, etc.)
+### Utilidades para o Docker
 
-* Deployment instructions
+#### Remover todos os containers
+```
+$ docker rm -f $(docker ps -aq)
+```
+* use ```-f``` depois do ```rm``` para forçar
 
-* ...
+#### Remover todos os volumes
+```
+$ docker volume prune
+```
+* use ```-f``` depois do ```prune``` para forçar
+
+
+#### Remover todas as imagens
+```
+$ docker rmi -f $(docker images -aq)
+```
+* use ```-f``` depois do ```rmi``` para forçar
