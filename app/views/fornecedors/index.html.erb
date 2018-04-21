@@ -3,30 +3,12 @@
 <h1>Fornecedores</h1>
 
 <table>
-  <thead>
-    <tr>
-      <th>Nome</th>
-      <th>Descricao</th>
-      <th>Cidade</th>
-      <th>Endereco</th>
-      <th>Bairro</th>
-      <th>Numero</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
   <tbody>
     <% @fornecedors.each do |fornecedor| %>
       <tr>
-        <td><%= fornecedor.nome %></td>
-        <td><%= fornecedor.descricao %></td>
-        <td><%= fornecedor.cidade %></td>
-        <td><%= fornecedor.endereco %></td>
-        <td><%= fornecedor.bairro %></td>
-        <td><%= fornecedor.numero %></td>
-        <td><%= link_to 'Show', fornecedor %></td>
-        <td><%= link_to 'Edit', edit_fornecedor_path(fornecedor) %></td>
-        <td><%= link_to 'Destroy', fornecedor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to fornecedor.nome, fornecedor %></td>
+        <td><%= link_to 'Editar', edit_fornecedor_path(fornecedor) %></td>
+        <td><%= link_to 'Remover', fornecedor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -34,4 +16,4 @@
 
 <br>
 
-<%= link_to 'New Fornecedor', new_fornecedor_path %>
+<%= link_to 'Novo Fornecedor', new_fornecedor_path %>
