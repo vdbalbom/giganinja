@@ -28,6 +28,7 @@ class FornecedorsController < ApplicationController
   # POST /fornecedors.json
   def create
     @fornecedor = Fornecedor.new(fornecedor_params)
+    # TODO: VALIDATE fornecedor must have one or more telefones
     respond_to do |format|
       # TODO: verify telefones and emails, to solve the PROBLEM 1
       if @fornecedor.save
@@ -47,6 +48,7 @@ class FornecedorsController < ApplicationController
   # PATCH/PUT /fornecedors/1
   # PATCH/PUT /fornecedors/1.json
   def update
+    # TODO: VALIDATE fornecedor must have one or more telefones
     respond_to do |format|
       # TODO: verify telefones and emails, to solve the PROBLEM 2
       if @fornecedor.update(fornecedor_params)
