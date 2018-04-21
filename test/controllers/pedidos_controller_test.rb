@@ -2,10 +2,8 @@ require 'test_helper'
 
 class PedidosControllerTest < ActionDispatch::IntegrationTest
   setup do
-    t = Transportadora.new(nome: "My String")
-    t.save
     @pedido = pedidos(:one)
-    @pedido.transportadora_id = t.id
+    @pedido.transportadora_id = transportadoras(:one).id
   end
 
   test "should get index" do

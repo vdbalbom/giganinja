@@ -2,17 +2,9 @@ require 'test_helper'
 
 class ItemsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    f = Fornecedor.new(nome: "My String")
-    f.save
-    t = Transportadora.new(nome: "My String")
-    t.save
-    prod = Produto.new(nome: "My String", fornecedor_id: f.id)
-    prod.save
-    ped = Pedido.new(transportadora_id: t.id)
-    ped.save
     @item = items(:one)
-    @item.produto_id = prod.id
-    @item.pedido_id = ped.id
+    @item.produto_id = produtos(:one).id
+    @item.pedido_id = pedidos(:one).id
   end
 
   test "should get index" do
