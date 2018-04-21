@@ -19,26 +19,26 @@
 //https://rbudiharso.wordpress.com/2010/07/07/dynamically-add-and-remove-input-field-in-rails-without-javascript/
 function addTelefoneField() {
   let div = document.createElement("div")
-  div.innerHTML = "<input type=\"text\" placeholder=\"DDD\" name=\"ddds[]\">\n" +
-                  "<input type=\"text\" placeholder=\"Telefone\" name=\"telefones[]\">\n" +
-                  "<input type=\"text\" placeholder=\"Referência\" name=\"t_referencias[]\">\n" +
+  div.innerHTML = "<input type=\"text\" placeholder=\"DDD\" name=\"telefone[]ddd\">\n" +
+                  "<input type=\"text\" placeholder=\"Telefone\" name=\"telefone[]numero\">\n" +
+                  "<input type=\"text\" placeholder=\"Referência\" name=\"telefone[]referencia\">\n" +
                   "<button type=\"button\" onclick=\"rmField(this)\"> - </button>"
   document.getElementById("telefones_field").appendChild(div);
 }
 
 function addEmailField() {
   let div = document.createElement("div")
-  div.innerHTML = "<input type=\"text\" placeholder=\"Email\" name=\"emails[]\">\n" +
-                  "<input type=\"text\" placeholder=\"Referência\" name=\"e_referencias[]\">\n" +
+  div.innerHTML = "<input type=\"text\" placeholder=\"Email\" name=\"email[]endereco_email\">\n" +
+                  "<input type=\"text\" placeholder=\"Referência\" name=\"email[]referencia\">\n" +
                   "<button type=\"button\" onclick=\"rmField(this)\"> - </button>"
   document.getElementById("emails_field").appendChild(div);
 }
 
 function addItemField() {
   let div = document.createElement("div")
-  div.innerHTML = "<input type=\"text\" placeholder=\"ID do Produto\" name=\"produto_ids[]\">\n" +
-                  "<input type=\"text\" placeholder=\"Preço do Produto\" name=\"valors[]\">\n" +
-                  "<input type=\"text\" placeholder=\"Quantidade\" name=\"quantidades[]\">\n" +
+  div.innerHTML = "<input type=\"text\" placeholder=\"ID do Produto\" name=\"item[]produto_id\">\n" +
+                  "<input type=\"text\" placeholder=\"Preço do Produto\" name=\"item[]valor\">\n" +
+                  "<input type=\"text\" placeholder=\"Quantidade\" name=\"item[]quantidade\">\n" +
                   "<button type=\"button\" onclick=\"rmField(this)\"> - </button>"
   document.getElementById("items_field").appendChild(div);
 }

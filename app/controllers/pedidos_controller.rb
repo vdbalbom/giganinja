@@ -84,14 +84,11 @@ class PedidosController < ApplicationController
     end
 
     def add_items
-      params[:produto_ids].delete("")
-      params[:valors].delete("")
-      params[:quantidades].length.times do |i|
-        email = Item.new(produto_id: params[:produto_ids][i],
-                         valor: params[:valors][i],
-                         quantidade: params[:quantidades][i],
-                         pedido_id: @pedido.id)
-        email.save
+      params[:item].delete_if{|i| i[:produto_id] + i[:valor] + i[:quantidade] == ""}
+      params[:item].each do |i|
+        item = Item.new(produto_id: i[:produto_id], valor: i[:valor], quantidade: i[:quantidade],
+                        pedido_id: @pedido.id)
+        item.save
       end
     end
 end

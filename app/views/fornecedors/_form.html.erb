@@ -46,16 +46,16 @@
     <div id="telefones_field">
       <% @fornecedor.telefones.each do |tel| %>
         <div>
-          <input type="text" placeholder="DDD" name="ddds[]" value="<%=tel.ddd%>">
-          <input type="text" placeholder="Telefone" name="telefones[]" value="<%=tel.numero%>">
-          <input type="text" placeholder="Referência" name="t_referencias[]" value="<%=tel.referencia%>">
+          <input type="text" placeholder="DDD" name="telefone[]ddd" value="<%=tel.ddd%>">
+          <input type="text" placeholder="Telefone" name="telefone[]numero" value="<%=tel.numero%>">
+          <input type="text" placeholder="Referência" name="telefone[]referencia" value="<%=tel.referencia%>">
           <button type="button" onclick="rmField(this)"> - </button>
         </div>
       <% end %>
       <div>
-        <input type="text" placeholder="DDD" name="ddds[]">
-        <input type="text" placeholder="Telefone" name="telefones[]">
-        <input type="text" placeholder="Referência" name="t_referencias[]">
+        <input type="text" placeholder="DDD" name="telefone[]ddd">
+        <input type="text" placeholder="Telefone" name="telefone[]numero">
+        <input type="text" placeholder="Referência" name="telefone[]referencia">
         <button type="button" onclick="rmField(this)"> - </button>
       </div>
     </div>
@@ -67,13 +67,13 @@
     <div id="emails_field">
       <% @fornecedor.emails.each do |mail| %>
         <div>
-          <input type="text" placeholder="Email" name="emails[]" value="<%=mail.endereco_email%>">
-          <input type="text" placeholder="Referência" name="e_referencias[]" value="<%=mail.referencia%>">
+          <input type="text" placeholder="Email" name="email[]endereco_email" value="<%=mail.endereco_email%>">
+          <input type="text" placeholder="Referência" name="email[]referencia" value="<%=mail.referencia%>">
         </div>
       <% end %>
       <div>
-        <input type="text" placeholder="Email" name="emails[]">
-        <input type="text" placeholder="Referência" name="e_referencias[]">
+        <input type="text" placeholder="Email" name="email[]endereco_email">
+        <input type="text" placeholder="Referência" name="email[]referencia">
       </div>
     </div>
     <button type="button" onclick="addEmailField()"> + </button>

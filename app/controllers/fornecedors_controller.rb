@@ -94,25 +94,19 @@ class FornecedorsController < ApplicationController
     end
 
     def add_telefones
-      params[:ddds].delete("")
-      params[:telefones].delete("")
-      params[:t_referencias].delete("")
-      params[:telefones].length.times do |i|
-        telefone = Telefone.new(ddd: params[:ddds][i],
-                                numero: params[:telefones][i],
-                                referencia: params[:t_referencias][i],
+      params[:telefone].delete_if{|t| t[:ddd] + t[:numero] + t[:referencia] == ""}
+      params[:telefone].each do |t|
+        telefone = Telefone.new(ddd: t[:ddd], numero: t[:numero], referencia: t[:referencia],
                                 fornecedor_id: @fornecedor.id)
         telefone.save
       end
     end
 
     def add_emails
-      params[:emails].delete("")
-      params[:e_referencias].delete("")
-      params[:emails].length.times do |i|
-        email = Email.new(endereco_email: params[:emails][i],
-                                referencia: params[:e_referencias][i],
-                                fornecedor_id: @fornecedor.id)
+      params[:email].delete_if{|e| e[:endereco_email] + e[:referencia] == ""}
+      params[:email].each do |e|
+        email = Email.new(endereco_email: e[:endereco_email], referencia: e[:referencia],
+                          fornecedor_id: @fornecedor.id)
         email.save
       end
     end

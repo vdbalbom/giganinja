@@ -46,16 +46,16 @@
     <div id="items_field">
       <% @pedido.items.each do |item| %>
         <div>
-          <input type="text" placeholder="ID do Produto" name="produto_ids[]" value="<%=item.produto_id%>">
-          <input type="text" placeholder="Preço do Produto" name="valors[]" value="<%=item.valor%>">
-          <input type="text" placeholder="Quantidade" name="quantidades[]" value="<%=item.quantidade%>">
+          <input type="text" placeholder="ID do Produto" name="item[]produto" value="<%=item.produto_id%>">
+          <input type="text" placeholder="Preço do Produto" name="item[]valor" value="<%=item.valor%>">
+          <input type="text" placeholder="Quantidade" name="item[]quantidade" value="<%=item.quantidade%>">
           <button type="button" onclick="rmField(this)"> - </button>
         </div>
       <% end %>
       <div>
-        <input type="text" placeholder="ID do Produto" name="produto_ids[]">
-        <input type="text" placeholder="Preço do Produto" name="valors[]">
-        <input type="text" placeholder="Quantidade" name="quantidades[]">
+        <input type="text" placeholder="ID do Produto" name="item[]produto_id">
+        <input type="text" placeholder="Preço do Produto" name="item[]valor">
+        <input type="text" placeholder="Quantidade" name="item[]quantidade">
         <button type="button" onclick="rmField(this)"> - </button>
       </div>
     </div>
