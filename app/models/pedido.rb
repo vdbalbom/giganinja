@@ -4,8 +4,8 @@ class Pedido < ApplicationRecord
   validates :data, presence: true
   validates :hora, presence: true
   validates :nota_fiscal, presence: true
-  validates :valor_frete, presence: true
-  validates :desconto, presence: true
+  validates_numericality_of :valor_frete
+  validates_numericality_of :desconto
 
   def valor_total
     total = 0.0
