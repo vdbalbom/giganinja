@@ -26,7 +26,7 @@ class PedidosController < ApplicationController
   # POST /pedidos.json
   def create
     @pedido = Pedido.new(pedido_params)
-
+    # TODO: VALIDATE pedido must have one or more items
     respond_to do |format|
       # TODO: verify items, to solve the PROBLEM 3
       if @pedido.save
@@ -45,9 +45,13 @@ class PedidosController < ApplicationController
   # PATCH/PUT /pedidos/1
   # PATCH/PUT /pedidos/1.json
   def update
+    # TODO: VALIDATE pedido must have one or more items
     respond_to do |format|
       if @pedido.update(pedido_params)
+        # TODO: verify items, to solve the PROBLEM 4
         @pedido.items.each {|item| item.destroy}
+        # PROBLEM 4: this is not de best solution because add_items could return false
+        #            and in this case the pedido should not be updated
         add_items
         format.html { redirect_to @pedido, notice: 'Pedido was successfully updated.' }
         format.json { render :show, status: :ok, location: @pedido }
