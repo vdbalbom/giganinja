@@ -25,6 +25,13 @@ $ make run-dev
 
 ---
 
+### TODO:
+- Melhorar mensagens de erro
+- Mais testes
+- CSS
+
+---
+
 ### Utilidades para o Docker
 
 #### Remover todos os containers
