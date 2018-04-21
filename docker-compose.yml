@@ -9,11 +9,17 @@ services:
       - .:/app
   dev:
     extends: base
-    command: bash -c "rails s -e development"
+    environment:
+      - RAILS_ENV=development
+    command: bash -c "./run-dev.sh"
 
   prod:
    extends: base
-   command: bash -c "rails s -e production"
+   environment:
+     - RAILS_ENV=production
+     - RAILS_SERVE_STATIC_FILES=true
+     - SECRET_KEY_BASE=`rails secret`
+   command: bash -c "./run-prod.sh"
 
   test:
     extends: base
