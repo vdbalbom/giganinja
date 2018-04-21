@@ -1,6 +1,5 @@
-<h1>Editing Telefone</h1>
+<h1>Editando Telefone de <%= link_to @telefone.fornecedor.nome, @telefone.fornecedor if @telefone.fornecedor %></h1>
 
 <%= render 'form', telefone: @telefone %>
 
-<%= link_to 'Show', @telefone %> |
-<%= link_to 'Back', telefones_path %>
+<%= link_to 'Cancelar', @telefone.fornecedor if @telefone.fornecedor %>

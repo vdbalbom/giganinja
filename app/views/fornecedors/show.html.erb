@@ -1,34 +1,37 @@
 <p id="notice"><%= notice %></p>
 
+<h1> <%= @fornecedor.nome %> </h1>
+<%= link_to 'Editar', edit_fornecedor_path(@fornecedor) %>
+
 <p>
   <strong>Nome:</strong>
   <%= @fornecedor.nome %>
 </p>
 
 <p>
-  <strong>Descricao:</strong>
+  <strong>Descrição:</strong>
   <%= @fornecedor.descricao %>
 </p>
 
 <p>
-  <strong>Cidade:</strong>
-  <%= @fornecedor.cidade %>
+  <strong>Endereço:</strong>
+  <%= @fornecedor.endereco %>, <%= @fornecedor.numero %> - <%= @fornecedor.bairro %> - <%= @fornecedor.cidade %>
 </p>
 
 <p>
-  <strong>Endereco:</strong>
-  <%= @fornecedor.endereco %>
+  <strong>Telefone(s):</strong>
 </p>
+
+<%= render 'telefones/index', telefones: @telefones %>
 
 <p>
-  <strong>Bairro:</strong>
-  <%= @fornecedor.bairro %>
+  <strong>Email(s):</strong>
 </p>
+
+<%= render 'emails/index', emails: @emails %>
 
 <p>
-  <strong>Numero:</strong>
-  <%= @fornecedor.numero %>
+  <strong>Produtos:</strong>
 </p>
 
-<%= link_to 'Edit', edit_fornecedor_path(@fornecedor) %> |
-<%= link_to 'Back', fornecedors_path %>
+<%= render 'produtos/index', produtos: @produtos %>

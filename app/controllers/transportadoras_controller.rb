@@ -10,6 +10,7 @@ class TransportadorasController < ApplicationController
   # GET /transportadoras/1
   # GET /transportadoras/1.json
   def show
+    @pedidos = @transportadora.pedidos
   end
 
   # GET /transportadoras/new

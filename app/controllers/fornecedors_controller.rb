@@ -10,6 +10,9 @@ class FornecedorsController < ApplicationController
   # GET /fornecedors/1
   # GET /fornecedors/1.json
   def show
+    @produtos = @fornecedor.produtos
+    @telefones = @fornecedor.telefones
+    @emails = @fornecedor.emails
   end
 
   # GET /fornecedors/new

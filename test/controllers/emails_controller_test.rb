@@ -2,10 +2,9 @@ require 'test_helper'
 
 class EmailsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    f = Fornecedor.new(nome: "My String")
-    f.save
+    @fornecedor = fornecedors(:one)
     @email = emails(:one)
-    @email.fornecedor_id = f.id
+    @email.fornecedor_id = @fornecedor.id
   end
 
   test "should get index" do
@@ -38,7 +37,7 @@ class EmailsControllerTest < ActionDispatch::IntegrationTest
 
   test "should update email" do
     patch email_url(@email), params: { email: { endereco_email: @email.endereco_email, fornecedor_id: @email.fornecedor_id, referencia: @email.referencia } }
-    assert_redirected_to email_url(@email)
+    assert_redirected_to @fornecedor
   end
 
   test "should destroy email" do

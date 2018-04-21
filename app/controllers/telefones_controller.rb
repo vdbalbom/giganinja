@@ -42,7 +42,7 @@ class TelefonesController < ApplicationController
   def update
     respond_to do |format|
       if @telefone.update(telefone_params)
-        format.html { redirect_to @telefone, notice: 'Telefone was successfully updated.' }
+        format.html { redirect_to @telefone.fornecedor, notice: 'Telefone was successfully updated.' }
         format.json { render :show, status: :ok, location: @telefone }
       else
         format.html { render :edit }

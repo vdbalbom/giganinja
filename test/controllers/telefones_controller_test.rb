@@ -2,10 +2,9 @@ require 'test_helper'
 
 class TelefonesControllerTest < ActionDispatch::IntegrationTest
   setup do
-    f = Fornecedor.new(nome: "My String")
-    f.save
+    @fornecedor = fornecedors(:one)
     @telefone = telefones(:one)
-    @telefone.fornecedor_id = f.id
+    @telefone.fornecedor_id = @fornecedor.id
   end
 
   test "should get index" do
@@ -38,7 +37,7 @@ class TelefonesControllerTest < ActionDispatch::IntegrationTest
 
   test "should update telefone" do
     patch telefone_url(@telefone), params: { telefone: { ddd: @telefone.ddd, fornecedor_id: @telefone.fornecedor_id, numero: @telefone.numero, referencia: @telefone.referencia } }
-    assert_redirected_to telefone_url(@telefone)
+    assert_redirected_to @fornecedor
   end
 
   test "should destroy telefone" do

@@ -10,6 +10,7 @@ class PedidosController < ApplicationController
   # GET /pedidos/1
   # GET /pedidos/1.json
   def show
+    @items = @pedido.items
   end
 
   # GET /pedidos/new

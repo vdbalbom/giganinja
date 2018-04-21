@@ -1,0 +1,24 @@
+<table>
+  <thead>
+    <tr>
+      <th>Nota fiscal</th>
+      <th>Data</th>
+      <th>Hora</th>
+      <th>Valor total</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pedidos.each do |pedido| %>
+      <tr>
+        <td><%= link_to pedido.nota_fiscal, pedido %></td>
+        <td><%= pedido.data %></td>
+        <td><%= pedido.hora %></td>
+        <td><%= pedido.valor_total %></td>
+        <td><%= link_to 'Editar', edit_pedido_path(pedido) %></td>
+        <td><%= link_to 'Remover', pedido, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

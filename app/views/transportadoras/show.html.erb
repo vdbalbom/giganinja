@@ -1,9 +1,16 @@
 <p id="notice"><%= notice %></p>
 
+<h1> <%= @transportadora.nome %> </h1>
+
+<%= link_to 'Editar', edit_transportadora_path(@transportadora) %>
+
 <p>
   <strong>Nome:</strong>
   <%= @transportadora.nome %>
 </p>
 
-<%= link_to 'Edit', edit_transportadora_path(@transportadora) %> |
-<%= link_to 'Back', transportadoras_path %>
+<p>
+  <strong>Pedidos:</strong>
+</p>
+
+<%= render 'pedidos/index', pedidos: @pedidos %>

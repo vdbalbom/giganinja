@@ -1,5 +1,8 @@
 <p id="notice"><%= notice %></p>
 
+<h1> Pedido <%= @pedido.nota_fiscal %> </h1>
+<%= link_to 'Editar', edit_pedido_path(@pedido) %>
+
 <p>
   <strong>Data:</strong>
   <%= @pedido.data %>
@@ -16,6 +19,17 @@
 </p>
 
 <p>
+  <strong>Transportadora:</strong>
+  <%= nome_transportadora @pedido %>
+</p>
+
+<p>
+  <strong>Itens:</strong>
+</p>
+
+<%= render 'items/index', items: @items %>
+
+<p>
   <strong>Valor frete:</strong>
   <%= @pedido.valor_frete %>
 </p>
@@ -29,11 +43,3 @@
   <strong>Valor total:</strong>
   <%= @pedido.valor_total %>
 </p>
-
-<p>
-  <strong>Transportadora:</strong>
-  <%= nome_transportadora @pedido %>
-</p>
-
-<%= link_to 'Edit', edit_pedido_path(@pedido) %> |
-<%= link_to 'Back', pedidos_path %>

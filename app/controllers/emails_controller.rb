@@ -42,7 +42,7 @@ class EmailsController < ApplicationController
   def update
     respond_to do |format|
       if @email.update(email_params)
-        format.html { redirect_to @email, notice: 'Email was successfully updated.' }
+        format.html { redirect_to @email.fornecedor, notice: 'Email was successfully updated.' }
         format.json { render :show, status: :ok, location: @email }
       else
         format.html { render :edit }

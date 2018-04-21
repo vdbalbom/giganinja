@@ -1,0 +1,12 @@
+<table>
+  <tbody>
+    <% @telefones.each do |telefone| %>
+      <tr>
+        <td>(<%= telefone.ddd %>) <%= telefone.numero %></td>
+        <td><%= telefone.referencia %></td>
+        <td><%= link_to 'Editar', edit_telefone_path(telefone) %></td>
+        <td><%= link_to 'Remover', telefone, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

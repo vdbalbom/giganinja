@@ -3,20 +3,12 @@
 <h1>Transportadoras</h1>
 
 <table>
-  <thead>
-    <tr>
-      <th>Nome</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
   <tbody>
     <% @transportadoras.each do |transportadora| %>
       <tr>
-        <td><%= transportadora.nome %></td>
-        <td><%= link_to 'Show', transportadora %></td>
-        <td><%= link_to 'Edit', edit_transportadora_path(transportadora) %></td>
-        <td><%= link_to 'Destroy', transportadora, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to transportadora.nome, transportadora %></td>
+        <td><%= link_to 'Editar', edit_transportadora_path(transportadora) %></td>
+        <td><%= link_to 'Remover', transportadora, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -24,4 +16,4 @@
 
 <br>
 
-<%= link_to 'New Transportadora', new_transportadora_path %>
+<%= link_to 'Nova Transportadora', new_transportadora_path %>
