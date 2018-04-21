@@ -42,7 +42,7 @@ class PedidosController < ApplicationController
   # PATCH/PUT /pedidos/1.json
   def update
     respond_to do |format|
-      if verify_items && @pedido.update(pedido_params)
+      if verify_items && @pedido.update(pedido_params) # TODO: deal with verify_items errors messages
         @pedido.items.each {|item| item.destroy}
         add_items
         format.html { redirect_to @pedido, notice: 'Pedido was successfully updated.' }
@@ -75,16 +75,24 @@ class PedidosController < ApplicationController
       params.require(:pedido).permit(:data, :hora, :nota_fiscal, :valor_frete, :desconto, :transportadora_id)
     end
 
-    # TODO: write this method
+    # TODO: write tests for this method
     def verify_items
       # must have one or more items
-      # each item must have produto_id, valor and quantidade > 0
-      # the produto_id must correspond to a produto that exists
+      return false unless params[:item]
+      params[:item].delete_if {|i| i[:produto_id] + i[:valor] + i[:quantidade] == ""}
+      return false if params[:item].length == 0
+      params[:item].each do |i|
+        # each item must have produto_id, valor and quantidade
+        return false if i[:produto_id] == "" || i[:valor] == "" || i[:quantidade] == ""
+        # quantidade > 0
+        return false if i[:quantidade].to_f <= 0
+        # the produto_id must correspond to a produto that exists
+        return false unless Produto.exists? i[:produto_id]
+      end
       return true
     end
 
     def add_items
-      params[:item].delete_if{|i| i[:produto_id] + i[:valor] + i[:quantidade] == ""}
       params[:item].each do |i|
         item = Item.new(produto_id: i[:produto_id], valor: i[:valor], quantidade: i[:quantidade],
                         pedido_id: @pedido.id)

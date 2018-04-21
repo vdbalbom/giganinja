@@ -2,6 +2,7 @@ require 'test_helper'
 
 class PedidosControllerTest < ActionDispatch::IntegrationTest
   setup do
+    @produto = produtos(:one)
     @pedido = pedidos(:one)
     @pedido.transportadora_id = transportadoras(:one).id
   end
@@ -19,7 +20,7 @@ class PedidosControllerTest < ActionDispatch::IntegrationTest
   test "should create pedido" do
     assert_difference('Pedido.count') do
       post pedidos_url, params: { pedido: { data: @pedido.data, desconto: @pedido.desconto, hora: @pedido.hora, nota_fiscal: @pedido.nota_fiscal, transportadora_id: @pedido.transportadora_id, valor_frete: @pedido.valor_frete },
-                                  item: [{"produto_id" => "", "valor" => "", "quantidade" => ""}] }
+                                  item: [{"produto_id" => @produto.id, "valor" => "0", "quantidade" => "2"}] }
     end
 
     assert_redirected_to pedido_url(Pedido.last)
@@ -37,7 +38,7 @@ class PedidosControllerTest < ActionDispatch::IntegrationTest
 
   test "should update pedido" do
     patch pedido_url(@pedido), params: { pedido: { data: @pedido.data, desconto: @pedido.desconto, hora: @pedido.hora, nota_fiscal: @pedido.nota_fiscal, transportadora_id: @pedido.transportadora_id, valor_frete: @pedido.valor_frete },
-                                         item: [{"produto_id" => "", "valor" => "", "quantidade" => ""}] }
+                                         item: [{"produto_id" => @produto.id, "valor" => "0", "quantidade" => "2"}] }
     assert_redirected_to pedido_url(@pedido)
   end
 

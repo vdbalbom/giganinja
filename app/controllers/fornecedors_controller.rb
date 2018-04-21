@@ -80,21 +80,32 @@ class FornecedorsController < ApplicationController
       params.require(:fornecedor).permit(:nome, :descricao, :cidade, :endereco, :bairro, :numero)
     end
 
-    # TODO: write this method
+    # TODO: write tests for this method
     def verify_telefones
       # must have one or more telefones
-      # each telefone must have ddd and numero
+      return false unless params[:telefone]
+      params[:telefone].delete_if {|i| i[:ddd] + i[:numero] + i[:referencia] == ""}
+      return false if params[:telefone].length == 0
+      params[:telefone].each do |i|
+        # each telefone must have ddd and numero
+        return false if i[:ddd] == "" || i[:numero] == ""
+      end
       return true
     end
 
-    # TODO: write this method
+    # TODO: write tests for this method
     def verify_emails
-      # each email must have endereco_email
+      # can have zero or more emails
+      return true unless params[:email]
+      params[:email].delete_if {|i| i[:endereco_email] + i[:referencia] == ""}
+      params[:email].each do |i|
+        # each email must have endereco_email
+        return false if i[:endereco_email] == ""
+      end
       return true
     end
 
     def add_telefones
-      params[:telefone].delete_if{|t| t[:ddd] + t[:numero] + t[:referencia] == ""}
       params[:telefone].each do |t|
         telefone = Telefone.new(ddd: t[:ddd], numero: t[:numero], referencia: t[:referencia],
                                 fornecedor_id: @fornecedor.id)
@@ -103,7 +114,7 @@ class FornecedorsController < ApplicationController
     end
 
     def add_emails
-      params[:email].delete_if{|e| e[:endereco_email] + e[:referencia] == ""}
+      return unless params[:email]
       params[:email].each do |e|
         email = Email.new(endereco_email: e[:endereco_email], referencia: e[:referencia],
                           fornecedor_id: @fornecedor.id)
