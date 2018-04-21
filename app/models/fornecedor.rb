@@ -6,5 +6,5 @@ class Fornecedor < ApplicationRecord
   validates :endereco, presence: true
   validates :cidade, presence: true
   validates :bairro, presence: true
-  validates :numero, presence: true
+  validates_numericality_of :numero
 end
