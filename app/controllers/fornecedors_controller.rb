@@ -28,12 +28,8 @@ class FornecedorsController < ApplicationController
   # POST /fornecedors.json
   def create
     @fornecedor = Fornecedor.new(fornecedor_params)
-    # TODO: VALIDATE fornecedor must have one or more telefones
     respond_to do |format|
-      # TODO: verify telefones and emails, to solve the PROBLEM 1
-      if @fornecedor.save
-        # PROBLEM 1: this is not de best solution because add_telefones and add_emails could return false
-        #            and in this case the forncedor should not be created
+      if verify_telefones && verify_emails && @fornecedor.save # TODO: deal with verifys errors messages
         add_telefones
         add_emails
         format.html { redirect_to @fornecedor, notice: 'Fornecedor was successfully created.' }
@@ -48,12 +44,8 @@ class FornecedorsController < ApplicationController
   # PATCH/PUT /fornecedors/1
   # PATCH/PUT /fornecedors/1.json
   def update
-    # TODO: VALIDATE fornecedor must have one or more telefones
     respond_to do |format|
-      # TODO: verify telefones and emails, to solve the PROBLEM 2
-      if @fornecedor.update(fornecedor_params)
-        # PROBLEM 2: this is not de best solution because add_telefones and add_emails could return false
-        #            and in this case the forncedor should not be updated
+      if verify_telefones && verify_emails && @fornecedor.update(fornecedor_params) # TODO: deal with verifys errors messages
         @fornecedor.telefones.each {|tel| tel.destroy}
         @fornecedor.emails.each {|mail| mail.destroy}
         add_telefones
@@ -86,6 +78,19 @@ class FornecedorsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def fornecedor_params
       params.require(:fornecedor).permit(:nome, :descricao, :cidade, :endereco, :bairro, :numero)
+    end
+
+    # TODO: write this method
+    def verify_telefones
+      # must have one or more telefones
+      # each telefone must have ddd and numero
+      return true
+    end
+
+    # TODO: write this method
+    def verify_emails
+      # each email must have endereco_email
+      return true
     end
 
     def add_telefones

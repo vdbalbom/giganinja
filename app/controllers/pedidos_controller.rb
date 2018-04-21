@@ -26,12 +26,8 @@ class PedidosController < ApplicationController
   # POST /pedidos.json
   def create
     @pedido = Pedido.new(pedido_params)
-    # TODO: VALIDATE pedido must have one or more items
     respond_to do |format|
-      # TODO: verify items, to solve the PROBLEM 3
-      if @pedido.save
-        # PROBLEM 3: this is not de best solution because add_items could return false
-        #            and in this case the pedido should not be created
+      if verify_items && @pedido.save # TODO: deal with verify_items errors messages
         add_items
         format.html { redirect_to @pedido, notice: 'Pedido was successfully created.' }
         format.json { render :show, status: :created, location: @pedido }
@@ -45,13 +41,9 @@ class PedidosController < ApplicationController
   # PATCH/PUT /pedidos/1
   # PATCH/PUT /pedidos/1.json
   def update
-    # TODO: VALIDATE pedido must have one or more items
     respond_to do |format|
-      if @pedido.update(pedido_params)
-        # TODO: verify items, to solve the PROBLEM 4
+      if verify_items && @pedido.update(pedido_params)
         @pedido.items.each {|item| item.destroy}
-        # PROBLEM 4: this is not de best solution because add_items could return false
-        #            and in this case the pedido should not be updated
         add_items
         format.html { redirect_to @pedido, notice: 'Pedido was successfully updated.' }
         format.json { render :show, status: :ok, location: @pedido }
@@ -83,6 +75,14 @@ class PedidosController < ApplicationController
       params.require(:pedido).permit(:data, :hora, :nota_fiscal, :valor_frete, :desconto, :transportadora_id)
     end
 
+    # TODO: write this method
+    def verify_items
+      # must have one or more items
+      # each item must have produto_id, valor and quantidade > 0
+      # the produto_id must correspond to a produto that exists
+      return true
+    end
+
     def add_items
       params[:produto_ids].delete("")
       params[:valors].delete("")
@@ -91,8 +91,6 @@ class PedidosController < ApplicationController
                          valor: params[:valors][i],
                          quantidade: params[:quantidades][i],
                          pedido_id: @pedido.id)
-        return false unless email.save
       end
-      return true
     end
 end
