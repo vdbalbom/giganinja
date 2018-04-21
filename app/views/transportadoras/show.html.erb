@@ -2,7 +2,8 @@
 
 <h1> <%= @transportadora.nome %> </h1>
 
-<%= link_to 'Editar', edit_transportadora_path(@transportadora) %>
+<%= link_to 'Editar', edit_transportadora_path(@transportadora) %>|
+<%= link_to 'Remover', @transportadora, method: :delete, data: { confirm: 'Tem certeza?' } %>
 
 <p>
   <strong>Nome:</strong>

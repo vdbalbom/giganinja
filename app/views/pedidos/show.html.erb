@@ -1,7 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <h1> Pedido <%= @pedido.nota_fiscal %> </h1>
-<%= link_to 'Editar', edit_pedido_path(@pedido) %>
+<%= link_to 'Editar', edit_pedido_path(@pedido) %>|
+<%= link_to 'Remover', @pedido, method: :delete, data: { confirm: 'Tem certeza?' } %>
 
 <p>
   <strong>Data:</strong>
