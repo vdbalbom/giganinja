@@ -92,7 +92,7 @@ class PedidosController < ApplicationController
       return items
     end
 
-    # TODO: write tests for this method
+    # TODO: move valitations to models
     def validate_items
       # must have one or more items
       return false if @items.empty?

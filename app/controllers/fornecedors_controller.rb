@@ -112,7 +112,7 @@ class FornecedorsController < ApplicationController
       return emails
     end
 
-    # TODO: write tests for this method
+    # TODO: move valitations to models
     def validate_telefones
       # must have one or more telefones
       return false if @telefones.empty?
@@ -123,7 +123,7 @@ class FornecedorsController < ApplicationController
       return true
     end
 
-    # TODO: write tests for this method
+    # TODO: move valitations to models
     def validate_emails
       # can have zero or more emails
       @emails.each do |e|
