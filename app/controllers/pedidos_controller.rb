@@ -16,16 +16,19 @@ class PedidosController < ApplicationController
   # GET /pedidos/new
   def new
     @pedido = Pedido.new
+    @items = []
   end
 
   # GET /pedidos/1/edit
   def edit
+    @items = @pedido.items
   end
 
   # POST /pedidos
   # POST /pedidos.json
   def create
     @pedido = Pedido.new(pedido_params)
+    @items = get_items
     respond_to do |format|
       if verify_items && @pedido.save # TODO: deal with verify_items errors messages
         add_items
@@ -75,28 +78,34 @@ class PedidosController < ApplicationController
       params.require(:pedido).permit(:data, :hora, :nota_fiscal, :valor_frete, :desconto, :transportadora_id)
     end
 
+    def get_items
+      items = []
+      if params[:item]
+        params[:item].delete_if {|i| i[:produto_id] + i[:valor] + i[:quantidade] == ""}
+        params[:item].each do |i|
+          items.append(Item.new(produto_id: i[:produto_id],
+                                valor: i[:valor],
+                                quantidade: i[:quantidade]))
+        end
+      end
+      return items
+    end
+
     # TODO: write tests for this method
     def verify_items
       # must have one or more items
-      return false unless params[:item]
-      params[:item].delete_if {|i| i[:produto_id] + i[:valor] + i[:quantidade] == ""}
-      return false if params[:item].length == 0
-      params[:item].each do |i|
-        # each item must have produto_id, valor and quantidade
-        return false if i[:produto_id] == "" || i[:valor] == "" || i[:quantidade] == ""
-        # quantidade > 0
-        return false if i[:quantidade].to_f <= 0
-        # the produto_id must correspond to a produto that exists
-        return false unless Produto.exists? i[:produto_id]
+      return false if @items.empty?
+      @items.each do |i|
+        # each item must have produto, valor and quantidade > 0
+        return false unless i.produto && i.valor && i.quantidade && i.quantidade > 0
       end
       return true
     end
 
     def add_items
-      params[:item].each do |i|
-        item = Item.new(produto_id: i[:produto_id], valor: i[:valor], quantidade: i[:quantidade],
-                        pedido_id: @pedido.id)
-        item.save
+      @items.each do |i|
+        i.pedido = @pedido
+        i.save
       end
     end
 end

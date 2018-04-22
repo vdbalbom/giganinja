@@ -44,9 +44,9 @@
   <div class="field">
     <%= form.label :items %>
     <div id="items_field">
-      <% @pedido.items.each do |item| %>
+      <% @items.each do |item| %>
         <div>
-          <input type="text" placeholder="ID do Produto" name="item[]produto" value="<%=item.produto_id%>">
+          <input type="text" placeholder="ID do Produto" name="item[]produto_id" value="<%=item.produto_id%>">
           <input type="text" placeholder="Preço do Produto" name="item[]valor" value="<%=item.valor%>">
           <input type="text" placeholder="Quantidade" name="item[]quantidade" value="<%=item.quantidade%>">
           <button type="button" onclick="rmField(this)"> - </button>
