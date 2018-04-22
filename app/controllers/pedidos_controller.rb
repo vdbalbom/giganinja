@@ -44,6 +44,7 @@ class PedidosController < ApplicationController
   # PATCH/PUT /pedidos/1
   # PATCH/PUT /pedidos/1.json
   def update
+    @items = get_items
     respond_to do |format|
       if validate_items && @pedido.update(pedido_params) # TODO: deal with validate_items errors messages
         @pedido.items.each {|item| item.destroy}

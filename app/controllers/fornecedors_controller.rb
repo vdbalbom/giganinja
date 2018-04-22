@@ -50,6 +50,8 @@ class FornecedorsController < ApplicationController
   # PATCH/PUT /fornecedors/1
   # PATCH/PUT /fornecedors/1.json
   def update
+    @telefones = get_telefones
+    @emails = get_emails
     respond_to do |format|
       if validate_telefones && validate_emails && @fornecedor.update(fornecedor_params) # TODO: deal with validates errors messages
         @fornecedor.telefones.each {|tel| tel.destroy}
