@@ -18,16 +18,22 @@ class FornecedorsController < ApplicationController
   # GET /fornecedors/new
   def new
     @fornecedor = Fornecedor.new
+    @telefones = []
+    @emails = []
   end
 
   # GET /fornecedors/1/edit
   def edit
+    @telefones = @fornecedor.telefones
+    @emails = @fornecedor.emails
   end
 
   # POST /fornecedors
   # POST /fornecedors.json
   def create
     @fornecedor = Fornecedor.new(fornecedor_params)
+    @telefones = get_telefones
+    @emails = get_emails
     respond_to do |format|
       if verify_telefones && verify_emails && @fornecedor.save # TODO: deal with verifys errors messages
         add_telefones
@@ -80,45 +86,62 @@ class FornecedorsController < ApplicationController
       params.require(:fornecedor).permit(:nome, :descricao, :cidade, :endereco, :bairro, :numero)
     end
 
+    def get_telefones
+      telefones = []
+      if params[:telefone]
+        params[:telefone].delete_if {|t| t[:ddd] + t[:numero] + t[:referencia] == ""}
+        params[:telefone].each do |t|
+          telefones.append(Telefone.new(ddd: t[:ddd], numero: t[:numero],
+                                       referencia: t[:referencia]))
+        end
+      end
+      return telefones
+    end
+
+    def get_emails
+      emails = []
+      if params[:email]
+        params[:email].delete_if {|e| e[:endereco_email] + e[:referencia] == ""}
+        params[:email].each do |e|
+          emails.append(Email.new(endereco_email: e[:endereco_email],
+                                  referencia: e[:referencia]))
+        end
+      end
+      return emails
+    end
+
     # TODO: write tests for this method
-    def verify_telefones
+    def validate_telefones
       # must have one or more telefones
-      return false unless params[:telefone]
-      params[:telefone].delete_if {|i| i[:ddd] + i[:numero] + i[:referencia] == ""}
-      return false if params[:telefone].length == 0
-      params[:telefone].each do |i|
+      return false if @telefones.empty?
+      @telefones.each do |t|
         # each telefone must have ddd and numero
-        return false if i[:ddd] == "" || i[:numero] == ""
+        return false if t.ddd == "" || t.numero == ""
       end
       return true
     end
 
     # TODO: write tests for this method
-    def verify_emails
+    def validate_emails
       # can have zero or more emails
-      return true unless params[:email]
-      params[:email].delete_if {|i| i[:endereco_email] + i[:referencia] == ""}
-      params[:email].each do |i|
+      @emails.each do |e|
         # each email must have endereco_email
-        return false if i[:endereco_email] == ""
+        return false if e.endereco_email == ""
       end
       return true
     end
 
     def add_telefones
-      params[:telefone].each do |t|
-        telefone = Telefone.new(ddd: t[:ddd], numero: t[:numero], referencia: t[:referencia],
-                                fornecedor_id: @fornecedor.id)
-        telefone.save
+      @telefones.each do |t|
+        t.fornecedor = @fornecedor
+        t.save
       end
     end
 
     def add_emails
-      return unless params[:email]
-      params[:email].each do |e|
-        email = Email.new(endereco_email: e[:endereco_email], referencia: e[:referencia],
-                          fornecedor_id: @fornecedor.id)
-        email.save
+      @emails.each do |e|
+        e.fornecedor = @fornecedor
+        e.save
       end
     end
 end

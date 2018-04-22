@@ -44,7 +44,7 @@
   <div class="field">
     <%= form.label :telefones %>
     <div id="telefones_field">
-      <% @fornecedor.telefones.each do |tel| %>
+      <% @telefones.each do |tel| %>
         <div>
           <input type="text" placeholder="DDD" name="telefone[]ddd" value="<%=tel.ddd%>">
           <input type="text" placeholder="Telefone" name="telefone[]numero" value="<%=tel.numero%>">
@@ -65,7 +65,7 @@
   <div class="field">
     <%= form.label :emails %>
     <div id="emails_field">
-      <% @fornecedor.emails.each do |mail| %>
+      <% @emails.each do |mail| %>
         <div>
           <input type="text" placeholder="Email" name="email[]endereco_email" value="<%=mail.endereco_email%>">
           <input type="text" placeholder="Referência" name="email[]referencia" value="<%=mail.referencia%>">
