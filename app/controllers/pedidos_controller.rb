@@ -30,7 +30,7 @@ class PedidosController < ApplicationController
     @pedido = Pedido.new(pedido_params)
     @items = get_items
     respond_to do |format|
-      if verify_items && @pedido.save # TODO: deal with verify_items errors messages
+      if validate_items && @pedido.save # TODO: deal with validate_items errors messages
         add_items
         format.html { redirect_to @pedido, notice: 'Pedido was successfully created.' }
         format.json { render :show, status: :created, location: @pedido }
@@ -45,7 +45,7 @@ class PedidosController < ApplicationController
   # PATCH/PUT /pedidos/1.json
   def update
     respond_to do |format|
-      if verify_items && @pedido.update(pedido_params) # TODO: deal with verify_items errors messages
+      if validate_items && @pedido.update(pedido_params) # TODO: deal with validate_items errors messages
         @pedido.items.each {|item| item.destroy}
         add_items
         format.html { redirect_to @pedido, notice: 'Pedido was successfully updated.' }
@@ -92,7 +92,7 @@ class PedidosController < ApplicationController
     end
 
     # TODO: write tests for this method
-    def verify_items
+    def validate_items
       # must have one or more items
       return false if @items.empty?
       @items.each do |i|

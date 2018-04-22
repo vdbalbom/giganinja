@@ -35,7 +35,7 @@ class FornecedorsController < ApplicationController
     @telefones = get_telefones
     @emails = get_emails
     respond_to do |format|
-      if verify_telefones && verify_emails && @fornecedor.save # TODO: deal with verifys errors messages
+      if validate_telefones && validate_emails && @fornecedor.save # TODO: deal with validates errors messages
         add_telefones
         add_emails
         format.html { redirect_to @fornecedor, notice: 'Fornecedor was successfully created.' }
@@ -51,7 +51,7 @@ class FornecedorsController < ApplicationController
   # PATCH/PUT /fornecedors/1.json
   def update
     respond_to do |format|
-      if verify_telefones && verify_emails && @fornecedor.update(fornecedor_params) # TODO: deal with verifys errors messages
+      if validate_telefones && validate_emails && @fornecedor.update(fornecedor_params) # TODO: deal with validates errors messages
         @fornecedor.telefones.each {|tel| tel.destroy}
         @fornecedor.emails.each {|mail| mail.destroy}
         add_telefones
