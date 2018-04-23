@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <h1> <%= @fornecedor.nome %> </h1>
-<%= link_to 'Editar', edit_fornecedor_path(@fornecedor) %> |
-<%= link_to 'Remover', @fornecedor, method: :delete, data: { confirm: 'Tem certeza?' } %>
+<p> <%= link_to 'Editar ', edit_fornecedor_path(@fornecedor) %> |
+<%= link_to 'Remover', @fornecedor, method: :delete, data: { confirm: 'Tem certeza?' } %> </p>
 
 <p>
   <strong>Nome:</strong>

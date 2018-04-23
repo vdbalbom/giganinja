@@ -2,8 +2,8 @@
 
 <h1> <%= @produto.nome %> :: <%= @produto.id %> </h1>
 
-<%= link_to 'Editar', edit_produto_path(@produto) %> |
-<%= link_to 'Remover', @produto, method: :delete, data: { confirm: 'Tem certeza?' } %>
+<p> <%= link_to 'Editar ', edit_produto_path(@produto) %> |
+<%= link_to 'Remover', @produto, method: :delete, data: { confirm: 'Tem certeza?' } %> </p>
 
 <p>
   <strong>ID:</strong>
