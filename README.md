@@ -23,12 +23,22 @@ $ make run-test
 $ make run-dev
 ```
 
+## Rodar no ambiente de PROD
+```
+$ make run-prod
+```
+
+## Rodar no ambiente de PROD desatachado
+```
+$ make run-prod-detached
+```
+
 ---
 
 ### TODO:
 - Melhorar mensagens de erro
 - Mais testes
-- CSS
+- Melhorar CSS
 
 ---
 
@@ -36,7 +46,7 @@ $ make run-dev
 
 #### Remover todos os containers
 ```
-$ docker rm -f $(docker ps -aq)
+$ docker rm $(docker ps -aq)
 ```
 * use ```-f``` depois do ```rm``` para forçar
 
@@ -49,6 +59,6 @@ $ docker volume prune
 
 #### Remover todas as imagens
 ```
-$ docker rmi -f $(docker images -aq)
+$ docker rmi $(docker images -aq)
 ```
 * use ```-f``` depois do ```rmi``` para forçar
